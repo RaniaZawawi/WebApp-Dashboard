@@ -1,0 +1,105 @@
+/*******************************************************************************
+                            General CSS rules
+*******************************************************************************/
+html {
+  font-size: 18px;
+}
+
+.light {
+  font-weight: normal;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*******************************************************************************
+                            Header CSS rules
+*******************************************************************************/
+header {
+  background-color: #8888D6;
+  color: #FFF;
+}
+
+header h1 {
+  margin: 0;
+  font-size: .8em;
+  padding: 10px;
+}
+
+#bell {
+  border-right: 1px solid white;
+}
+
+#bell svg {
+  width: 15px;
+  padding: 0 10px;
+}
+
+#menu svg {
+  width: 20px;
+  fill: white;
+  padding: 0 10px;
+}
+
+#user {
+  display: none;
+}
+
+#user img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+/*******************************************************************************
+                            Media Query CSS rules
+*******************************************************************************/
+/*                         Tablet Media Query CSS rules                       */
+
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 1em;
+  }
+
+  #bell svg {
+    width: 20px;
+  }
+
+  #menu {
+    display: none;
+  }
+
+  #user {
+    display: flex;
+    margin: 0 10px;
+  }
+
+  #user h2 {
+    margin: 0;
+    font-size: .7em;
+    padding-left: 10px;
+  }
+}
+
+/*                         Desktop Media Query CSS rules                      */
+@media (min-width: 1024px) {
+  header h1 {
+    font-size: 1.2em;
+  }
+
+  #bell svg {
+    width: 25px;
+  }
+
+  #user img {
+    width: 25px;
+    height: 25px;
+  }
+
+  #user h2 {
+    font-size: 1em;
+  }
+}
