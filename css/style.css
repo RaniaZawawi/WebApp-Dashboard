@@ -55,6 +55,19 @@ header h1 {
 }
 
 /*******************************************************************************
+                            Navigation CSS rules
+*******************************************************************************/
+nav {
+  display: none;
+  background-color: #5D5DA9;
+  color: #FFF;
+}
+
+ nav .icon {
+  padding: 15px 10px;
+ }
+
+/*******************************************************************************
                             Media Query CSS rules
 *******************************************************************************/
 /*                         Tablet Media Query CSS rules                       */
@@ -81,6 +94,10 @@ header h1 {
     margin: 0;
     font-size: .7em;
     padding-left: 10px;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
   }
 }
 
