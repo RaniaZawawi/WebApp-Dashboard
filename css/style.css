@@ -15,12 +15,28 @@ html {
   align-items: center;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr repeat(8, 4fr);
+  grid-template-areas: "header navigation"
+                       "dashboard dashboard"
+                       "visit visit"
+                       "mobile mobile"
+                       "social social"
+                       "member member"
+                       "activity activity"
+                       "message message"
+                       "setting setting";
+}
+
 /*******************************************************************************
                             Header CSS rules
 *******************************************************************************/
 header {
   background-color: #8888D6;
   color: #FFF;
+  grid-area: header;
 }
 
 header h1 {
@@ -38,12 +54,6 @@ header h1 {
   padding: 0 10px;
 }
 
-#menu svg {
-  width: 20px;
-  fill: white;
-  padding: 0 10px;
-}
-
 #user {
   display: none;
 }
@@ -58,31 +68,80 @@ header h1 {
                             Navigation CSS rules
 *******************************************************************************/
 nav {
-  display: none;
-  background-color: #5D5DA9;
+  background-color: #8888D6;
   color: #FFF;
+  display: flex;
+  grid-area: navigation;
 }
 
  nav .icon {
-  padding: 15px 10px;
+  width: 15px;
+  padding: 10px;
  }
 
+.sections {
+  border: 1px solid lightgrey;
+}
+/* other */
+#dashboards {
+  grid-area: dashboard;
+}
+
+/* other */
+#visits {
+  grid-area: visit;
+
+}
+/* other */
+#mobiles {
+  grid-area: mobile;
+}
+/* other */
+#socials {
+  grid-area: social;
+}
+/* other */
+#members {
+  grid-area: member;
+}
+/* other */
+#activities {
+  grid-area: activity;
+}
+/* other */
+#messages {
+  grid-area: message;
+}
+/* other */
+#settings {
+  grid-area: setting;
+}
 /*******************************************************************************
                             Media Query CSS rules
 *******************************************************************************/
 /*                         Tablet Media Query CSS rules                       */
 
 @media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 14fr;
+    grid-template-rows: 1fr repeat(8, 4fr);
+    grid-template-areas: "header header"
+                         "navigation dashboard"
+                         "navigation visit"
+                         "navigation mobile"
+                         "navigation social"
+                         "navigation member"
+                         "navigation activity"
+                         "navigation message"
+                         "navigation setting";
+  }
+
   header h1 {
     font-size: 1em;
   }
 
   #bell svg {
     width: 20px;
-  }
-
-  #menu {
-    display: none;
   }
 
   #user {
@@ -95,14 +154,33 @@ nav {
     font-size: .7em;
     padding-left: 10px;
   }
+
   nav {
-    display: flex;
+    background-color: #5D5DA9;
     flex-direction: column;
+    align-items: center;
+  }
+
+  nav .icon {
+   width: 25px;
+   padding: 20px 0;
   }
 }
 
 /*                         Desktop Media Query CSS rules                      */
 @media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 7fr 7fr;
+    grid-template-rows: 1fr 11fr 8fr 5fr repeat(2, 8fr);
+    grid-template-areas: "header header header"
+                         "navigation dashboard dashboard"
+                         "navigation visit mobile"
+                         "navigation social social"
+                         "navigation member activity"
+                         "navigation message setting";
+  }
+
+
   header h1 {
     font-size: 1.2em;
   }
@@ -118,5 +196,10 @@ nav {
 
   #user h2 {
     font-size: 1em;
+  }
+
+  nav .icon {
+   width: 50px;
+   padding: 30px 0;
   }
 }
