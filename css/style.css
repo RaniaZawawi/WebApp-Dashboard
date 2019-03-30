@@ -5,6 +5,14 @@ html {
   font-size: 18px;
 }
 
+h1,
+h2 {
+  margin: 0;
+}
+
+::placeholder {
+  color: darkgray;
+}
 .light {
   font-weight: normal;
 }
@@ -40,7 +48,6 @@ header {
 }
 
 header h1 {
-  margin: 0;
   font-size: .8em;
   padding: 10px;
 }
@@ -79,9 +86,21 @@ nav {
   padding: 10px;
  }
 
-.sections {
-  border: 1px solid lightgrey;
-}
+/*******************************************************************************
+                       Different sections general CSS rules
+*******************************************************************************/
+ .sections {
+   border-top: 1px solid lightgray;
+   border-left: 1px solid lightgray;
+   padding: 15px;
+ }
+
+ .sections h2 {
+  font-size: .8em;
+  font-weight: normal;
+  color: gray;
+ }
+
 /* other */
 #dashboards {
   grid-area: dashboard;
@@ -108,14 +127,46 @@ nav {
 #activities {
   grid-area: activity;
 }
-/* other */
+/*******************************************************************************
+                       Email message section CSS rules
+*******************************************************************************/
 #messages {
   grid-area: message;
 }
-/* other */
+#messages form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#messages input,
+#messages button,
+#messages textarea {
+  border-radius: 3px;
+  border: 1px solid #DCDCDC;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+#messages input,
+#messages textarea {
+  background-color: whitesmoke;
+  color: darkgray;
+  font-size: .8em;
+}
+
+#messages button {
+  background-color: #8888D6;
+  color: white;
+  font-size: .9em;
+}
+
+/*******************************************************************************
+                            Settings section CSS rules
+*******************************************************************************/
 #settings {
   grid-area: setting;
 }
+
 /*******************************************************************************
                             Media Query CSS rules
 *******************************************************************************/
@@ -165,6 +216,15 @@ nav {
    width: 25px;
    padding: 20px 0;
   }
+
+  .sections {
+    padding: 20px;
+  }
+
+  .sections h2 {
+   font-size: .9em;
+  }
+
 }
 
 /*                         Desktop Media Query CSS rules                      */
@@ -202,4 +262,13 @@ nav {
    width: 50px;
    padding: 30px 0;
   }
+
+  .sections {
+    padding: 25px;
+  }
+
+  .sections h2 {
+   font-size: 1.1em;
+  }
+
 }
