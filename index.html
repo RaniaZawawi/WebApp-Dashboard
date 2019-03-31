@@ -171,13 +171,36 @@
         <form class="container">
           <input type="email" name="email" placeholder="Search for User">
           <textarea name="emessage" rows="8" cols="40" placeholder="Message for User"></textarea>
-          <button type="button" name="sendEmail">SEND</button>
+          <input type="submit" value="SEND">
         </form>
       </div>
 
       <!-- Settings section -->
       <div id="settings" class="sections">
         <h2>SETTINGS</h2>
+        <form class="slideGrid">
+
+          <p>Send Email Notifications</p>
+
+          <label for="emailNotify" class="switch">
+            <input type="checkbox" id="emailNotify">
+            <span class="slider">ON</span>
+          </label>
+
+          <p>Set Profile to Public</p>
+
+          <label for="profilePublic" class="switch">
+            <input type="checkbox" id="profilePublic">
+            <span class="slider">ON</span>
+          </label>
+
+          <select name="timeZone" placeholder="Select timez one">
+          </select>
+
+          <input type="submit" value="save">
+          <input type="submit" value="cancel" disabled>
+
+        </form>
       </div>
 
     </div>

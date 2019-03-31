@@ -6,7 +6,8 @@ html {
 }
 
 h1,
-h2 {
+h2,
+p {
   margin: 0;
 }
 
@@ -93,12 +94,12 @@ nav {
    border-top: 1px solid lightgray;
    border-left: 1px solid lightgray;
    padding: 15px;
+   color: gray;
  }
 
  .sections h2 {
   font-size: .8em;
   font-weight: normal;
-  color: gray;
  }
 
 /* other */
@@ -154,7 +155,7 @@ nav {
   font-size: .8em;
 }
 
-#messages button {
+#messages input[type="submit"] {
   background-color: #8888D6;
   color: white;
   font-size: .9em;
@@ -165,6 +166,101 @@ nav {
 *******************************************************************************/
 #settings {
   grid-area: setting;
+}
+#settings h2 {
+  margin-bottom: 30px;
+}
+#settings p {
+  font-size: .8em;
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.switch {
+  position: relative;
+  width: 75px;
+  height: 25px;
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+
+.switch input[type="checkbox"] {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #DCDCDC;
+  color: #DCDCDC;
+  border-radius: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  transition: .1s ease-out;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  width: 23px;
+  height: 23px;
+  left: 3px;
+  bottom: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s ease-out;
+}
+
+.switch input:checked + .slider {
+  background-color: #8888D6;
+  color: white;
+}
+
+.switch input:checked + .slider::before {
+  transform: translate(200%);
+}
+
+#settings select {
+  background-color: whitesmoke;
+  color: darkgray;
+  font-size: .8em;
+  padding: 10px;
+  grid-column-start: 1;
+  grid-column-end: 7;
+}
+
+#settings input[type="submit"] {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #8888D6;
+  color: white;
+  font-size: .9em;
+}
+
+#settings input:disabled {
+  background-color: gray;
+}
+
+#settings input[value="save"] {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#settings input[value="cancel"] {
+  grid-column-start: 4;
+  grid-column-end: 7;
+}
+
+.slideGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 20px;
 }
 
 /*******************************************************************************
