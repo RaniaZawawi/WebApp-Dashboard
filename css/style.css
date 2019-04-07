@@ -1,21 +1,33 @@
 /*******************************************************************************
                             General CSS rules
 *******************************************************************************/
+
 html {
   font-size: 18px;
 }
 
 h1,
-h2,
 p {
   margin: 0;
+}
+
+h2  {
+  font-size: .8em;
+  font-weight: normal;
+  margin: 0 0 20px;
 }
 
 ::placeholder {
   color: darkgray;
 }
+
 .light {
   font-weight: normal;
+}
+
+.half {
+  width: 90%;
+  margin: 10px auto 0;
 }
 
 .container {
@@ -27,7 +39,7 @@ p {
 .grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr repeat(8, 4fr);
+  grid-template-rows: 40px;
   grid-template-areas: "header navigation"
                        "dashboard dashboard"
                        "visit visit"
@@ -48,7 +60,7 @@ header {
   grid-area: header;
 }
 
-header h1 {
+h1 {
   font-size: .8em;
   padding: 10px;
 }
@@ -93,13 +105,8 @@ nav {
  .sections {
    border-top: 1px solid lightgray;
    border-left: 1px solid lightgray;
-   padding: 15px;
+   padding: 15px 15px 10px;
    color: gray;
- }
-
- .sections h2 {
-  font-size: .8em;
-  font-weight: normal;
  }
 
 /* other */
@@ -116,18 +123,103 @@ nav {
 #mobiles {
   grid-area: mobile;
 }
-/* other */
+
+/*******************************************************************************
+                       Social Stats section CSS rules
+*******************************************************************************/
 #socials {
   grid-area: social;
 }
-/* other */
+
+.medias {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.media {
+  border: 1px solid #DCDCDC;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  padding: 10px 5px;
+  margin: 10px 0;
+  justify-content: flex-start;
+}
+
+.photo {
+  background-color: #8888D6;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.photo svg {
+  width: 50%;
+  height: 50%;
+  margin: 12px;
+}
+
+.stats {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.stats h2 {
+  font-size: 1em;
+  color: #8888D6;
+}
+
+.stats p {
+  font-size: 1.5em;
+  font-weight: lighter;
+}
+
+/*******************************************************************************
+                       New Members section CSS rules
+                                    AND
+                       Recent Activities section CSS rules
+*******************************************************************************/
 #members {
   grid-area: member;
 }
-/* other */
+
+#members img,
+#activities img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.card,
+.post {
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: .6em;
+}
+
+p.mail {
+  color: #8888D6;
+}
+
 #activities {
   grid-area: activity;
 }
+
+.post p {
+  font-size: .45em;
+}
+
+p.link {
+  color: #8888D6;
+  font-size: .9em;
+  margin-left: 10px;
+}
+
 /*******************************************************************************
                        Email message section CSS rules
 *******************************************************************************/
@@ -137,25 +229,27 @@ nav {
 #messages form {
   flex-direction: column;
   align-items: stretch;
+  justify-content: space-between;
 }
 
 #messages input,
-#messages button,
 #messages textarea {
   border-radius: 3px;
   border: 1px solid #DCDCDC;
-  margin-top: 15px;
+  margin-bottom: 15px;
   padding: 5px;
-}
-
-#messages input,
-#messages textarea {
   background-color: whitesmoke;
   color: darkgray;
   font-size: .8em;
 }
 
+#messages input {
+  padding: 10px 5px;
+}
+
 #messages input[type="submit"] {
+  border-radius: 5px;
+  padding: 15px;
   background-color: #8888D6;
   color: white;
   font-size: .9em;
@@ -167,9 +261,7 @@ nav {
 #settings {
   grid-area: setting;
 }
-#settings h2 {
-  margin-bottom: 30px;
-}
+
 #settings p {
   font-size: .8em;
   grid-column-start: 1;
@@ -228,14 +320,14 @@ nav {
   background-color: whitesmoke;
   color: darkgray;
   font-size: .8em;
-  padding: 10px;
+  padding: 20px 10px;
   grid-column-start: 1;
   grid-column-end: 7;
 }
 
 #settings input[type="submit"] {
-  border-radius: 10px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 15px;
   background-color: #8888D6;
   color: white;
   font-size: .9em;
@@ -245,12 +337,12 @@ nav {
   background-color: gray;
 }
 
-#settings input[value="save"] {
+#settings input[value="SAVE"] {
   grid-column-start: 1;
   grid-column-end: 4;
 }
 
-#settings input[value="cancel"] {
+#settings input[value="CANCEL"] {
   grid-column-start: 4;
   grid-column-end: 7;
 }
@@ -258,9 +350,8 @@ nav {
 .slideGrid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-column-gap: 5px;
-  grid-row-gap: 20px;
+  grid-row-gap: 10px;
 }
 
 /*******************************************************************************
@@ -269,9 +360,11 @@ nav {
 /*                         Tablet Media Query CSS rules                       */
 
 @media (min-width: 768px) {
+  .half {
+    margin: 50px auto 0;
+  }
   .grid {
     grid-template-columns: 1fr 14fr;
-    grid-template-rows: 1fr repeat(8, 4fr);
     grid-template-areas: "header header"
                          "navigation dashboard"
                          "navigation visit"
@@ -283,8 +376,12 @@ nav {
                          "navigation setting";
   }
 
-  header h1 {
+  h1 {
     font-size: 1em;
+  }
+
+  h2 {
+   font-size: .9em;
   }
 
   #bell svg {
@@ -317,8 +414,44 @@ nav {
     padding: 20px;
   }
 
-  .sections h2 {
-   font-size: .9em;
+  .medias {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .media {
+    width: 30%;
+  }
+
+  #members img,
+  #activities img {
+    margin-right: 20px;
+  }
+
+  .card p,
+  .post p  {
+    font-size: .8em;
+  }
+
+  p.link {
+    font-size: 1.2em;
+    margin-left: 20px;
+  }
+
+  #messages input,
+  #messages textarea,
+  #settings p,
+  #settings select {
+    margin-top: 20px;
+    font-size: 1em;
+  }
+
+  .switch {
+    margin-top: 20px;
+  }
+
+  input[type="submit"] {
+    font-size: 1.2em;
   }
 
 }
@@ -327,7 +460,6 @@ nav {
 @media (min-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 7fr 7fr;
-    grid-template-rows: 1fr 11fr 8fr 5fr repeat(2, 8fr);
     grid-template-areas: "header header header"
                          "navigation dashboard dashboard"
                          "navigation visit mobile"
@@ -337,8 +469,12 @@ nav {
   }
 
 
-  header h1 {
+  h1 {
     font-size: 1.2em;
+  }
+
+  h2 {
+   font-size: 1.1em;
   }
 
   #bell svg {
@@ -363,8 +499,37 @@ nav {
     padding: 25px;
   }
 
-  .sections h2 {
-   font-size: 1.1em;
+  .stats h2 {
+    font-size: 1.2em;
+  }
+
+  .stats p {
+    font-size: 2em;
+  }
+
+  .post p  {
+    font-size: .7em;
+  }
+
+  #messages input,
+  #messages textarea {
+    font-size: 1em;
+  }
+
+  #messages input[type="submit"],
+  #settings input[type="submit"] {
+    font-size: 1.2em;
+  }
+
+  #settings p {
+    font-size: 1em;
+    margin: 20px 0;
+  }
+
+  #settings select {
+    padding: 20px 10px;
+    font-size: 1em;
+    margin: 20px 0 30px;
   }
 
 }
