@@ -114,6 +114,28 @@ nav {
   grid-area: dashboard;
 }
 
+ul, li {
+  display: inline-block;
+}
+
+.subMenu {
+  margin-bottom: 20px;
+}
+.subMenu h2 {
+  margin: 0;
+}
+
+li {
+  font-size: .7em;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.selected {
+  color: white;
+  background-color: #77C37A ;
+}
+
 /* other */
 #visits {
   grid-area: visit;
@@ -383,6 +405,12 @@ p.link {
   h2 {
    font-size: .9em;
   }
+
+  li {
+    font-size: .9em;
+    padding: 5px 15px;
+  }
+
 
   #bell svg {
     width: 20px;

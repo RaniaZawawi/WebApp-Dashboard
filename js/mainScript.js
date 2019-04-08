@@ -1,14 +1,83 @@
-const $trafficChart = $('#trafficChart')[0].getContext('2d');
+const generalChart = document.getElementById('trafficChart').getContext('2d');
 const dailyChart = document.getElementById('dailyChart').getContext('2d');
 const mobileChart = document.getElementById('mobileChart').getContext('2d');
 const $membersSection = $('#members');
 const $activitySection = $('#activities');
 const $optionZone = $('#timeZ');
 
+let lineChart = new Chart(generalChart, {
+  type: 'line',
+  data: { labels: xHours,
+          datasets: [{
+                      data: yHours,
+                      fill: true,
+                      borderColor: '#8888D6',
+                      backgroundColor: 'rgba(136, 136, 214,0.3)',
+                      pointBackgroundColor: '#fff',
+                      pointRadius: 5,
+                      lineTension: 0.1
+                    }]
+        },
+  options: {
+            legend: {
+                    display: false
+                  },
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+});
+
 getDailyChart();
 getMobileChart();
 getMembersData();
 getOptionZone();
+
+$('ul').on('click', 'li', function(event) {
+  if (!$(this).hasClass('selected')) {
+    clearListItemSelectedClass();
+    $(this).addClass('selected');
+
+    switch ($(this).index()) {
+      case 0:
+        lineChart.data.labels= xHours;
+        lineChart.data.datasets[0].data = yHours;
+        lineChart.update();
+        break;
+      case 1:
+        lineChart.data.labels= xDays;
+        lineChart.data.datasets[0].data = yDays;
+        lineChart.update();
+        break;
+      case 2:
+        lineChart.data.labels= xWeeks;
+        lineChart.data.datasets[0].data = yWeeks;
+        lineChart.update();
+        break;
+      case 3:
+        lineChart.data.labels= xMonths;
+        lineChart.data.datasets[0].data = yMonths;
+        lineChart.update();
+        break;
+      default:
+        console.log('inavlid choice');
+    };
+  }
+});
+
+//******************************************************************************
+//                   Clear List Items Selected Class function
+//  The (selected) class is removed from all list items
+//******************************************************************************
+function clearListItemSelectedClass(){
+  for(let index=0; index <4; index++){
+    $('li').eq(index).removeClass('selected');
+  };
+}
 
 //******************************************************************************
 //                         Get Daily Traffic Chart function

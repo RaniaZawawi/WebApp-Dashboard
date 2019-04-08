@@ -1,3 +1,16 @@
+// Traffic Data (Hourly, Daily, Weekly, Monthly)
+xHours = ['1-2am', '3-4am', '5-6am', '7-8am', '9-10am', '11-12am', '1-2pm', '3-4pm', '5-6pm', '7-8pm', '9-10pm', '11-12pm',  ]
+yHours = [320, 560, 630, 730, 590, 400, 520, 650, 340, 370, 210, 680];
+
+xDays = ['01Apr', '02Apr', '03Apr', '04Apr', '05Apr', '06Apr', '07Apr', '08Apr', '09Apr', '10Apr', '11Apr', '12Apr', '13Apr', '14Apr', '15Apr', '16Apr', '17Apr', '18Apr', '19Apr', '20Apr', '21Apr', '22Apr', '23Apr', '24Apr', '25Apr', '26Apr', '27Apr', '28Apr', '29Apr', '30Apr']
+yDays = [678, 567, 345, 320, 560, 430, 730, 120, 890, 420, 650, 340, 370, 210, 980, 678, 567, 345, 320, 560, 430, 730, 120, 890, 420, 650, 340, 370, 210, 980];
+
+xWeeks = ['Apr-Wk1', 'Apr-Wk2', 'Apr-Wk3', 'Apr-Wk4', 'Apr-Wk5', 'Apr-Wk6', 'Apr-Wk7', 'Apr-Wk8', 'Apr-Wk9', 'Apr-Wk10', 'Apr-Wk11', 'Apr-Wk12']
+yWeeks = [678, 320, 560, 120, 890, 370, 210, 980, 678, 120, 890, 980];
+
+xMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+yMonths = [210, 980, 678, 120, 890, 980, 678, 320, 560, 120, 890, 370];
+
 // Daily Traffic Data
 days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 dayTraffic = [50, 100, 175, 125, 225, 200, 100];
