@@ -112,13 +112,15 @@ $chartSelector.on('click', 'li', function(event) {
 $sendButton.on('click', function() {
   let $messageAdd = $('#userEmail').val();
   let $messageText = $('#textMessage').val();
+  let alertType = '';
+  let alertMessage = '';
 
   if ($messageAdd && $messageText)  {
-    let alertType = 'success';
-    let alertMessage = 'Message sent successfully';
+    alertType = 'success';
+    alertMessage = 'Message sent successfully';
   } else {
-    let alertType = 'error';
-    let alertMessage = "Missing data! Make sure that User's Email and Message Content are filled before sending";
+    alertType = 'error';
+    alertMessage = "Missing data! Make sure that User's Email and Message Content are filled before sending";
   }
   setAlertBox (alertType, alertMessage);
 });
