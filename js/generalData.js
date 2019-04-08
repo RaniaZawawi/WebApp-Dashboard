@@ -1,24 +1,92 @@
-// Traffic Data (Hourly, Daily, Weekly, Monthly)
+// Traffic Data (Hourly)
 xHours = ['1-2am', '3-4am', '5-6am', '7-8am', '9-10am', '11-12am', '1-2pm', '3-4pm', '5-6pm', '7-8pm', '9-10pm', '11-12pm',  ]
 yHours = [320, 560, 630, 730, 590, 400, 520, 650, 340, 370, 210, 680];
 
+// Traffic Data (Daily)
 xDays = ['01Apr', '02Apr', '03Apr', '04Apr', '05Apr', '06Apr', '07Apr', '08Apr', '09Apr', '10Apr', '11Apr', '12Apr', '13Apr', '14Apr', '15Apr', '16Apr', '17Apr', '18Apr', '19Apr', '20Apr', '21Apr', '22Apr', '23Apr', '24Apr', '25Apr', '26Apr', '27Apr', '28Apr', '29Apr', '30Apr']
 yDays = [678, 567, 345, 320, 560, 430, 730, 120, 890, 420, 650, 340, 370, 210, 980, 678, 567, 345, 320, 560, 430, 730, 120, 890, 420, 650, 340, 370, 210, 980];
 
-xWeeks = ['Apr-Wk1', 'Apr-Wk2', 'Apr-Wk3', 'Apr-Wk4', 'Apr-Wk5', 'Apr-Wk6', 'Apr-Wk7', 'Apr-Wk8', 'Apr-Wk9', 'Apr-Wk10', 'Apr-Wk11', 'Apr-Wk12']
-yWeeks = [678, 320, 560, 120, 890, 370, 210, 980, 678, 120, 890, 980];
+// Traffic Data (Weekly)
+xWeeks = ['Apr-Wk1', 'Apr-Wk2', 'Apr-Wk3', 'Apr-Wk4', 'Apr-Wk5', 'May-Wk1', 'May-Wk2', 'May-Wk3', 'May-Wk4', 'Jun-Wk01', 'Jun-Wk02', 'Jun-Wk03', 'Jun-WK04']
+yWeeks = [678, 320, 560, 120, 890, 370, 210, 980, 678, 120, 890, 980, 770];
 
+// Traffic Data (Monthly)
 xMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 yMonths = [210, 980, 678, 120, 890, 980, 678, 320, 560, 120, 890, 370];
+
+// Traffic Graph Data
+trafficGraphData= { labels: xHours,
+                    datasets: [{
+                                data: yHours,
+                                fill: true,
+                                borderColor: '#8888D6',
+                                backgroundColor: 'rgba(136, 136, 214,0.3)',
+                                pointBackgroundColor: '#fff',
+                                pointRadius: 5,
+                                lineTension: 0.1
+                              }]
+                  };
+trafficGraphOptions= {
+                      legend: {
+                                display: false
+                              },
+                      scales: {
+                                yAxes: [{
+                                          ticks: {
+                                                  beginAtZero: true
+                                                  }
+                                        }]
+                              }
+                      };
 
 // Daily Traffic Data
 days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 dayTraffic = [50, 100, 175, 125, 225, 200, 100];
 
+// Daily Traffic Graph Data
+dailyGraphData= {
+            labels: days,
+            datasets: [{
+                        data: dayTraffic,
+                        backgroundColor: '#8888D6'
+                      }]
+            };
+dailyGraphOptions= {
+                    legend: {
+                              display: false
+                            },
+                    scales: {
+                              yAxes: [{
+                                      ticks: {
+                                              beginAtZero: true
+                                              }
+                                      }]
+                            }
+                    };
+
 // Mobile Users Data
 devices = ['Phones', 'Tablets', 'Desktop'];
 pieColors = ['#77C37A', '#21ACAF','#8888D6'];
 pieValues = [30,30,120];
+
+// Mobile Users Graph Data
+mobileGraphData= {
+                  labels: devices,
+                  datasets: [{
+                              backgroundColor: pieColors,
+                              data: pieValues
+                            }]
+                };
+mobileGraphOptions= {
+                      legend: {
+                                position: 'right',
+                                labels: {
+                                          fontSize: 16,
+                                          boxWidth: 10,
+                                          padding: 20
+                                        }
+                              }
+                    };
 
 // Members information & activities
 membersData= [

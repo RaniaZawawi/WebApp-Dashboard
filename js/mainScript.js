@@ -1,141 +1,138 @@
 const generalChart = document.getElementById('trafficChart').getContext('2d');
 const dailyChart = document.getElementById('dailyChart').getContext('2d');
 const mobileChart = document.getElementById('mobileChart').getContext('2d');
+const messageForm = document.getElementById('userMessages');
+const settingForm = document.getElementById('userSettings');
+
 const $membersSection = $('#members');
 const $activitySection = $('#activities');
 const $optionZone = $('#timeZ');
+const $alertDiv = $('.alert');
 
+let userEmails = [];
+
+//  Prepare line chart with the traffic data, and options required
 let lineChart = new Chart(generalChart, {
   type: 'line',
-  data: { labels: xHours,
-          datasets: [{
-                      data: yHours,
-                      fill: true,
-                      borderColor: '#8888D6',
-                      backgroundColor: 'rgba(136, 136, 214,0.3)',
-                      pointBackgroundColor: '#fff',
-                      pointRadius: 5,
-                      lineTension: 0.1
-                    }]
-        },
-  options: {
-            legend: {
-                    display: false
-                  },
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }
+  data: trafficGraphData,
+  options: trafficGraphOptions
 });
 
-getDailyChart();
-getMobileChart();
+//  Prepare bar chart with the daily data, and options required
+let barChart = new Chart(dailyChart, {
+  type: 'bar',
+  data: dailyGraphData,
+  options: dailyGraphOptions
+});
+
+//  Prepare doughnut chart with the mobile data, and options required
+let doughnutChart = new Chart(mobileChart, {
+  type: 'doughnut',
+  data: mobileGraphData,
+  options: mobileGraphOptions
+});
+
 getMembersData();
 getOptionZone();
 
-$('ul').on('click', 'li', function(event) {
-  if (!$(this).hasClass('selected')) {
-    clearListItemSelectedClass();
-    $(this).addClass('selected');
+//  Define source for search with auto complete plugin
+$('.ui.search').search({
+                        source: userEmails
+                      });
 
-    switch ($(this).index()) {
-      case 0:
-        lineChart.data.labels= xHours;
-        lineChart.data.datasets[0].data = yHours;
-        lineChart.update();
-        break;
-      case 1:
-        lineChart.data.labels= xDays;
-        lineChart.data.datasets[0].data = yDays;
-        lineChart.update();
-        break;
-      case 2:
-        lineChart.data.labels= xWeeks;
-        lineChart.data.datasets[0].data = yWeeks;
-        lineChart.update();
-        break;
-      case 3:
-        lineChart.data.labels= xMonths;
-        lineChart.data.datasets[0].data = yMonths;
-        lineChart.update();
-        break;
-      default:
-        console.log('inavlid choice');
-    };
+//******************************************************************************
+//                      Event Listener functions
+//******************************************************************************
+//   1. Function triggered when the user messages form is submitted
+//      to prevent page reload
+//   2. Function triggered when the user settings form is submitted
+//   to prevent page reload
+//******************************************************************************
+messageForm.addEventListener('submit',(event)=>{
+    event.preventDefault();
+})
+settingForm.addEventListener('submit',(event)=>{
+    event.preventDefault();
+})
+
+//******************************************************************************
+//  Function triggered when a list item (within ul (id: traffic)) is clicked
+//  remove chosen class from all other list items,
+//  updates traffic graph with suitable data according to selected list item
+//******************************************************************************
+$('#traffic').on('click', 'li', function(event) {
+  if (!$(this).hasClass('chosen')) {
+    clearListItemChoiceClass();
+    $(this).addClass('chosen');
+    findListItemSelectedData($(this).index());
+    lineChart.update();
   }
+});
+
+//******************************************************************************
+//  Function triggered the close icon (X) is clicked
+//  Hides div with class (alert),
+//******************************************************************************
+$('span.close').on('click', function() {
+  $alertDiv.hide();
+});
+
+//******************************************************************************
+//  when SEND button is clicked
+//  set a message box (success or alert) according to data provided
+//******************************************************************************
+$('#send').on('click', function() {
+  let $messageAdd = $('#userEmail').val();
+  let $messageText = $('#textMessage').val();
+
+  if ($messageAdd && $messageText)  {
+    let alertType = 'success';
+    let alertMessage = 'Message sent successfully';
+  } else {
+    let alertType = 'error';
+    let alertMessage = "Missing data! Make sure that User's Email and Message Content are filled before sending";
+  }
+  setAlertBox (alertType, alertMessage);
 });
 
 //******************************************************************************
 //                   Clear List Items Selected Class function
 //  The (selected) class is removed from all list items
 //******************************************************************************
-function clearListItemSelectedClass(){
+function clearListItemChoiceClass(){
   for(let index=0; index <4; index++){
-    $('li').eq(index).removeClass('selected');
+    $('li.general').eq(index).removeClass('chosen');
   };
 }
 
 //******************************************************************************
-//                         Get Daily Traffic Chart function
-//  Prepare bar chart with the data, and set options required
+//                   Find List Items Selected Data function
+//  compares value passed as parameter,
+//  based on that sets the suitable data to traffic graph
 //******************************************************************************
-function getDailyChart() {
-  let barChart = new Chart(dailyChart, {
-    type: 'bar',
-    data: {
-            labels: days,
-            datasets: [{
-              data: dayTraffic,
-              backgroundColor: '#8888D6'
-            }]
-          },
-    options: {
-      legend: {
-        display: false
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
+function findListItemSelectedData(itemIndex){
+  switch (itemIndex) {
+    case 0:
+      lineChart.data.labels= xHours;
+      lineChart.data.datasets[0].data = yHours;
+      break;
+    case 1:
+      lineChart.data.labels= xDays;
+      lineChart.data.datasets[0].data = yDays;
+      break;
+    case 2:
+      lineChart.data.labels= xWeeks;
+      lineChart.data.datasets[0].data = yWeeks;
+      break;
+    case 3:
+      lineChart.data.labels= xMonths;
+      lineChart.data.datasets[0].data = yMonths;
+      break;
+    default:
+      console.log('inavlid choice');
+      break;
+  };
 }
-
-//******************************************************************************
-//                        Get Mobile Users Chart function
-//  Prepare bar chart with the data, and set options required
-//******************************************************************************
-function getMobileChart() {
-
-  let doughnutChart = new Chart(mobileChart, {
-    type: 'doughnut',
-    data: {
-      labels: devices,
-      datasets: [{
-          backgroundColor: pieColors,
-          data: pieValues
-      }]
-    },
-    options: {
-      legend: {
-          position: 'right',
-          labels: {
-              fontSize: 16,
-              boxWidth: 10,
-              padding: 20
-          }
-      }
-    }
-  });
-}
-
 //******************************************************************************
 //                           Get Members Data function
 //  loop through the members data array, and for each member
@@ -143,6 +140,7 @@ function getMobileChart() {
 //     (provided from array), and added it to members section
 //  2. call function activity details to create html element with data
 //     (provided from array), and added it to activity section
+//  3. add member email for userEmails array
 //******************************************************************************
 function getMembersData() {
   let memberHtml = '';
@@ -156,6 +154,8 @@ function getMembersData() {
     activityHtml = activityDetails(memberInfo);
     $activitySection.append(activityHtml);
 
+    let emailObject = { title: memberInfo.memberEmail };
+    userEmails.push(emailObject);
   }
   return;
 }
@@ -264,4 +264,31 @@ function getOptionZone() {
     $optionZone.append(optionHtml);
   }
   return;
+}
+
+//******************************************************************************
+//                          Function Set Alert box
+//  display a message box (success or alert) according to data provided
+//******************************************************************************
+function setAlertBox (alertType, alertMessage) {
+  Lobibox.alert(alertType,{
+                            msg: alertMessage,
+                            horizontalOffset: 5,
+                            //If the messagebox is larger (in width) than window's width. The messagebox's width is reduced to window width - 2 * horizontalOffset
+                            width           : 400,
+                            height          : 'auto',
+                            // Height is automatically given calculated by width
+                            closeButton     : true,
+                            // Show close button or not
+                            draggable       : false,
+                            // Make messagebox draggable
+                            customBtnClass  : 'lobibox-btn-default',
+                            // Class for custom buttons
+                            modal           : true,
+                            debug           : false,
+                            buttonsAlign    : 'center',
+                            // Position where buttons should be aligned
+                            closeOnEsc      : true,
+                            // Close messagebox on Esc press
+  });
 }

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <link type="text/css" rel="stylesheet" href="./css/normalize.css">
+    <!-- <link type="text/css" rel="stylesheet" href="./js/autoComplete/easy-autocomplete.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="./js/search/semantic.css">
+    <link type="text/css" rel="stylesheet" href="./js/messageBox/lobibox.min.css">
     <link type="text/css" rel="stylesheet" href="./css/style.css">
   </head>
   <body>
@@ -17,6 +20,7 @@
 
         <div class="container">
           <!--  Notification bell  -->
+
           <div id="bell">
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
@@ -34,14 +38,16 @@
 
           <!--  User Login  -->
           <div id="user">
-            <img src="./images/logo.png" alt="company logo">
+            <div>
+              <img src="./images/logo.png" alt="company logo">
+            </div>
             <h2 class="light">Rania Zawawi</h2>
           </div>
         </div>
       </header>
 
       <!-- Navigation section -->
-      <nav>
+      <nav class="container">
 
         <!--  Dashboard Icon  -->
         <div class="icon">
@@ -141,15 +147,17 @@
         <h2>Dashboard</h2>
         <div class="search">
         </div>
-        <div class="alert">
+        <div class="alert container">
+          <p><span class="bold">Alert</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <span class="close">X</span>
         </div>
         <div class="subMenu container">
           <h2>Traffic</h2>
-          <ul>
-            <li class="selected">Hourly</li>
-            <li>Daily</li>
-            <li>Weekly</li>
-            <li>Monthly</li>
+          <ul id="traffic">
+            <li class="general chosen">Hourly</li>
+            <li class="general">Daily</li>
+            <li class="general">Weekly</li>
+            <li class="general">Monthly</li>
           </ul>
         </div>
         <div>
@@ -250,17 +258,23 @@
       <!-- Message User section -->
       <div id="messages" class="sections">
         <h2>MESSAGE USER</h2>
-        <form class="container">
-          <input type="email" name="email" placeholder="Search for User">
-          <textarea name="emessage" rows="6" cols="40" placeholder="Message for User"></textarea>
-          <input type="submit" value="SEND">
+        <form id="userMessages" class="container">
+          <div class="ui search">
+            <div class="ui icon input">
+              <input class="prompt" id="userEmail" type="email" placeholder="Search for User">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+          <textarea name="emessage" id="textMessage" rows="6" cols="40" placeholder="Message for User"></textarea>
+          <input type="submit" id="send" value="SEND">
         </form>
       </div>
 
       <!-- Settings section -->
       <div id="settings" class="sections">
         <h2>SETTINGS</h2>
-        <form class="slideGrid">
+        <form id="userSettings" class="slideGrid">
 
           <p>Send Email Notifications</p>
 
@@ -288,6 +302,8 @@
 
     </div>
     <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/search/semantic.js"></script>
+    <script src="./js/messageBox/lobibox.min.js"></script>
     <script src="./js/generalData.js"></script>
     <script src="./js/mainScript.js"></script>
   </body>

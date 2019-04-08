@@ -3,6 +3,7 @@
 *******************************************************************************/
 
 html {
+  box-sizing: border-box;
   font-size: 18px;
 }
 
@@ -23,6 +24,10 @@ h2  {
 
 .light {
   font-weight: normal;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .half {
@@ -66,12 +71,28 @@ h1 {
 }
 
 #bell {
-  border-right: 1px solid white;
+  border-radius: 50%;
+  padding: 3px 1px 2px;
+  margin: 5px 10px;
 }
 
 #bell svg {
-  width: 15px;
-  padding: 0 10px;
+  width: 20px;
+  margin: auto 5px;
+  transition: .4s ease-out;
+}
+
+#bell:hover {
+  animation-name: shake;
+  animation-duration: .2s;
+  background-color: #77C37A;
+}
+
+
+@keyframes shake {
+    30% {transform: rotate(30deg);}
+    60% {transform: rotate(0deg);}
+    90% {transform: rotate(-30deg);}
 }
 
 #user {
@@ -88,15 +109,15 @@ h1 {
                             Navigation CSS rules
 *******************************************************************************/
 nav {
+  grid-area: navigation;
   background-color: #8888D6;
   color: #FFF;
-  display: flex;
-  grid-area: navigation;
+  justify-content: space-between;
+  padding: 5px 12px;
 }
 
  nav .icon {
   width: 15px;
-  padding: 10px;
  }
 
 /*******************************************************************************
@@ -109,12 +130,33 @@ nav {
    color: gray;
  }
 
-/* other */
+/*******************************************************************************
+                        Dashboard section CSS rules
+*******************************************************************************/
 #dashboards {
   grid-area: dashboard;
 }
 
-ul, li {
+.alert {
+  font-size: 0.9em;
+  color: white;
+  background-color: #8888CC;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.alert span {
+  font-size: 1em;
+}
+
+span.close {
+  font-size: 1.5em;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+#traffic,
+#traffic li {
   display: inline-block;
 }
 
@@ -125,23 +167,28 @@ ul, li {
   margin: 0;
 }
 
-li {
+li.general {
   font-size: .7em;
   border-radius: 30px;
   padding: 5px;
 }
 
-.selected {
+.chosen {
   color: white;
   background-color: #77C37A ;
 }
 
-/* other */
+/*******************************************************************************
+                        Visits section CSS rules
+*******************************************************************************/
 #visits {
   grid-area: visit;
 
 }
-/* other */
+
+/*******************************************************************************
+                        Mobiles section CSS rules
+*******************************************************************************/
 #mobiles {
   grid-area: mobile;
 }
@@ -277,6 +324,10 @@ p.link {
   font-size: .9em;
 }
 
+/*  format a class of input field for search with auto complete jquery plugin */
+ .ui.input {
+   width: 100%;
+ }
 /*******************************************************************************
                             Settings section CSS rules
 *******************************************************************************/
@@ -406,19 +457,22 @@ p.link {
    font-size: .9em;
   }
 
-  li {
+  li.general {
     font-size: .9em;
     padding: 5px 15px;
   }
 
 
   #bell svg {
-    width: 20px;
+    width: 25px;
   }
 
   #user {
     display: flex;
-    margin: 0 10px;
+    align-items: center;
+    border-left: 1px solid white;
+    margin: 5px;
+    padding-left: 10px;
   }
 
   #user h2 {
@@ -427,15 +481,17 @@ p.link {
     padding-left: 10px;
   }
 
-  nav {
+  nav.container {
     background-color: #5D5DA9;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
   }
 
   nav .icon {
    width: 25px;
-   padding: 20px 0;
+   margin: 30px auto;
+
   }
 
   .sections {
@@ -496,13 +552,12 @@ p.link {
                          "navigation message setting";
   }
 
-
   h1 {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 
   h2 {
-   font-size: 1.1em;
+   font-size: 1.2em;
   }
 
   #bell svg {
@@ -516,6 +571,20 @@ p.link {
 
   #user h2 {
     font-size: 1em;
+  }
+
+  .alert {
+    font-size: 1.1em;
+    padding: 10px;
+  }
+
+  .alert span {
+    font-size: 1.2em;
+    margin-right: 5px;
+  }
+
+  li.general {
+    font-size: 1.2em;
   }
 
   nav .icon {
