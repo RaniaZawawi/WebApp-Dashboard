@@ -1,3 +1,11 @@
+// Notifications
+notifyType = ['success','info', 'warning'];
+notifyMessage = ['SVG icon created based navigation with required links.',
+                 'A good practice is to check your website for cross-browser compatibility',
+                 'Your Built form is not actually submitting data'];
+notifyIcons = ['./Images/success-icon.png',
+               './Images/info-icon.png',
+               './Images/warning-icon.png']
 // Traffic Data (Hourly)
 xHours = ['1-2am', '3-4am', '5-6am', '7-8am', '9-10am', '11-12am', '1-2pm', '3-4pm', '5-6pm', '7-8pm', '9-10pm', '11-12pm',  ]
 yHours = [320, 560, 630, 730, 590, 400, 520, 650, 340, 370, 210, 680];

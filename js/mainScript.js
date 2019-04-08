@@ -1,15 +1,28 @@
+// JavaScript constants
 const generalChart = document.getElementById('trafficChart').getContext('2d');
 const dailyChart = document.getElementById('dailyChart').getContext('2d');
 const mobileChart = document.getElementById('mobileChart').getContext('2d');
 const messageForm = document.getElementById('userMessages');
 const settingForm = document.getElementById('userSettings');
 
-const $membersSection = $('#members');
-const $activitySection = $('#activities');
-const $optionZone = $('#timeZ');
+// JQuery constants
+const $notifyBell = $('#bell');
+
+const $closeAlert = $('span.close');
 const $alertDiv = $('.alert');
 
+const $chartSelector= $('#traffic');
+
+const $membersSection = $('#members');
+const $activitySection = $('#activities');
+
+const $sendButton = $('#send');
+
+const $optionZone = $('#timeZ');
+
+// JavaScript variables
 let userEmails = [];
+let clickCounts = 0;
 
 //  Prepare line chart with the traffic data, and options required
 let lineChart = new Chart(generalChart, {
@@ -56,11 +69,34 @@ settingForm.addEventListener('submit',(event)=>{
 })
 
 //******************************************************************************
+//  Function triggered the bell icon (notification) is clicked
+//
+//******************************************************************************
+$notifyBell.on('click',function() {
+  if (clickCounts <= 2) {
+    Lobibox.notify(notifyType[clickCounts],
+                  { msg: notifyMessage[clickCounts],
+                    img: notifyIcons[clickCounts],
+                    position: "top right"
+                  });
+  }
+  clickCounts += 1;
+})
+
+//******************************************************************************
+//  Function triggered the close icon (X) is clicked
+//  Hides div with class (alert),
+//******************************************************************************
+$closeAlert.on('click', function() {
+  $alertDiv.hide();
+});
+
+//******************************************************************************
 //  Function triggered when a list item (within ul (id: traffic)) is clicked
 //  remove chosen class from all other list items,
 //  updates traffic graph with suitable data according to selected list item
 //******************************************************************************
-$('#traffic').on('click', 'li', function(event) {
+$chartSelector.on('click', 'li', function(event) {
   if (!$(this).hasClass('chosen')) {
     clearListItemChoiceClass();
     $(this).addClass('chosen');
@@ -70,18 +106,10 @@ $('#traffic').on('click', 'li', function(event) {
 });
 
 //******************************************************************************
-//  Function triggered the close icon (X) is clicked
-//  Hides div with class (alert),
-//******************************************************************************
-$('span.close').on('click', function() {
-  $alertDiv.hide();
-});
-
-//******************************************************************************
 //  when SEND button is clicked
 //  set a message box (success or alert) according to data provided
 //******************************************************************************
-$('#send').on('click', function() {
+$sendButton.on('click', function() {
   let $messageAdd = $('#userEmail').val();
   let $messageText = $('#textMessage').val();
 

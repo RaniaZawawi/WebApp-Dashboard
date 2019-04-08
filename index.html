@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <link type="text/css" rel="stylesheet" href="./css/normalize.css">
-    <!-- <link type="text/css" rel="stylesheet" href="./js/autoComplete/easy-autocomplete.min.css"> -->
     <link type="text/css" rel="stylesheet" href="./js/search/semantic.css">
     <link type="text/css" rel="stylesheet" href="./js/messageBox/lobibox.min.css">
     <link type="text/css" rel="stylesheet" href="./css/style.css">
@@ -142,11 +141,17 @@
         </div>
       </nav>
 
+      <!-- Notify section -->
+      <div id="notify" class="container">
+        <div class="part1">Dashboard</div>
+        <form class="part2 container">
+          <input type="text" id="searchAll" placeholder="Search">
+          <img src="./images/search-icon.png" alt="search icon">
+        </form>
+      </div>
+
       <!-- Dashboard section -->
       <div id="dashboards" class="sections">
-        <h2>Dashboard</h2>
-        <div class="search">
-        </div>
         <div class="alert container">
           <p><span class="bold">Alert</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <span class="close">X</span>

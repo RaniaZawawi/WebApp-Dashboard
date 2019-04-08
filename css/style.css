@@ -35,6 +35,9 @@ h2  {
   margin: 10px auto 0;
 }
 
+.hidden {
+  display: none;
+}
 .container {
   display: flex;
   justify-content: space-between;
@@ -46,6 +49,7 @@ h2  {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 40px;
   grid-template-areas: "header navigation"
+                       "notify notify"
                        "dashboard dashboard"
                        "visit visit"
                        "mobile mobile"
@@ -95,6 +99,15 @@ h1 {
     90% {transform: rotate(-30deg);}
 }
 
+.notes {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  color: red;
+  opacity: .5;
+}
+
 #user {
   display: none;
 }
@@ -133,8 +146,53 @@ nav {
 /*******************************************************************************
                         Dashboard section CSS rules
 *******************************************************************************/
-#dashboards {
+#notify {
+  grid-area: notify;
+  align-items: stretch;
+}
+
+.part1 {
+  width: 30%;
+  color: gray;
+  font-size: 1em;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.part2 {
+  width: 70%;
+  background-color: whitesmoke;
+  border: 1px solid #DCDCDC;
+  justify-content: flex-end;
+  position: relative;
+}
+
+#searchAll {
+  width: 60%;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #DCDCDC;
+}
+
+#searchAll:focus + img{
+  display: none;
+}
+
+.part2 img{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 15px;
+  opacity: .4;
+}
+
+/*******************************************************************************
+                        Dashboard section CSS rules
+*******************************************************************************/
+#dashboards.sections {
   grid-area: dashboard;
+  border-top: none;
+  padding-top: 10px;
 }
 
 .alert {
@@ -145,6 +203,7 @@ nav {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
 .alert span {
   font-size: 1em;
 }
@@ -328,6 +387,10 @@ p.link {
  .ui.input {
    width: 100%;
  }
+
+ .lobibox-notify-wrapper.top {
+   top: 40px;
+ }
 /*******************************************************************************
                             Settings section CSS rules
 *******************************************************************************/
@@ -439,6 +502,7 @@ p.link {
   .grid {
     grid-template-columns: 1fr 14fr;
     grid-template-areas: "header header"
+                         "navigation notify"
                          "navigation dashboard"
                          "navigation visit"
                          "navigation mobile"
@@ -491,7 +555,19 @@ p.link {
   nav .icon {
    width: 25px;
    margin: 30px auto;
+  }
 
+  .part1 {
+    font-size: 1.2em;
+    width: 20%;
+  }
+
+  .part2 {
+    width: 80%;
+  }
+
+  #searchAll {
+    width: 30%;
   }
 
   .sections {
@@ -545,6 +621,7 @@ p.link {
   .grid {
     grid-template-columns: 1fr 7fr 7fr;
     grid-template-areas: "header header header"
+                         "navigation notify notify"
                          "navigation dashboard dashboard"
                          "navigation visit mobile"
                          "navigation social social"
@@ -571,6 +648,10 @@ p.link {
 
   #user h2 {
     font-size: 1em;
+  }
+
+  #searchAll {
+    width: 30%;
   }
 
   .alert {
