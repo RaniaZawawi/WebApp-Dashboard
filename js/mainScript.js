@@ -18,6 +18,9 @@ const $activitySection = $('#activities');
 
 const $sendButton = $('#send');
 
+const $localEmailNotify = $('#emailNotify');
+const $localProfileNotify = $('#profilePublic');
+
 const $optionZone = $('#timeZ');
 
 // JavaScript variables
@@ -48,6 +51,8 @@ let doughnutChart = new Chart(mobileChart, {
 getMembersData();
 getOptionZone();
 
+returnLocalstorageValues();
+
 //  Define source for search with auto complete plugin
 $('.ui.search').search({
                         source: userEmails
@@ -70,10 +75,11 @@ settingForm.addEventListener('submit',(event)=>{
 
 //******************************************************************************
 //  Function triggered the bell icon (notification) is clicked
-//
+//  set notification message according to number of clicks on bell
+//  as long as the number of clicks is less than notification-type array length
 //******************************************************************************
 $notifyBell.on('click',function() {
-  if (clickCounts <= 2) {
+  if (clickCounts < notifyType.length) {
     Lobibox.notify(notifyType[clickCounts],
                   { msg: notifyMessage[clickCounts],
                     img: notifyIcons[clickCounts],
@@ -125,6 +131,76 @@ $sendButton.on('click', function() {
   setAlertBox (alertType, alertMessage);
 });
 
+//******************************************************************************
+//  when email notification button is clicked
+//  sets the local storage variable accordingly
+//******************************************************************************
+$localEmailNotify.on('click', function(){
+  if (checkLocalStorageError()) {
+    checkLocalStorageVariable('notify1');
+  }
+})
+
+//******************************************************************************
+//  when profile notification button is clicked
+//  sets the local storage variable accordingly
+//******************************************************************************
+$localProfileNotify.on('click', function(){
+  if (checkLocalStorageError()) {
+    checkLocalStorageVariable('notify2');
+  }
+})
+
+//******************************************************************************
+//                   Return Local Storage Values function
+//  check if local storage variable is not null,
+//  then set as checked for the corresponding check box
+//******************************************************************************
+function returnLocalstorageValues(){
+  if (checkLocalStorageError()) {
+    if (localStorage.getItem('notify1') !== null) {
+      $localEmailNotify.prop('checked',true);
+    }
+    if (localStorage.getItem('notify2') !== null) {
+      $localProfileNotify.prop('checked',true);
+    }
+  }
+}
+
+//******************************************************************************
+//                   Check Local Storage Error function
+//  check if browser supports local storage
+//******************************************************************************
+function checkLocalStorageError() {
+  try {
+    'localStorage' in  window && Window['localStorage'] !== null
+  } catch(e) {
+    alertType = 'warning';
+    alertMessage = "Unable to access local storage";
+    setAlertBox (alertType, alertMessage);
+    return false;
+  }
+  return true;
+}
+
+//******************************************************************************
+//                   Check Local Storage variable function
+//  set a local storage variable if does not exist
+//  removes the local storage variable if it exists
+//******************************************************************************
+function checkLocalStorageVariable(localVariable) {
+  if (localStorage.getItem(localVariable) == null) {
+    // alertType = 'error';
+    // alertMessage = "local storage variable doesn't exist";
+    // setAlertBox (alertType, alertMessage);
+    localStorage.setItem(localVariable,'ON');
+  } else {
+    // alertType = 'success';
+    // alertMessage = "local storage variable exist";
+    // setAlertBox (alertType, alertMessage);
+    localStorage.removeItem(localVariable);
+  }
+}
 //******************************************************************************
 //                   Clear List Items Selected Class function
 //  The (selected) class is removed from all list items
