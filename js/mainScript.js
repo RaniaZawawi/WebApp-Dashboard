@@ -79,14 +79,25 @@ settingForm.addEventListener('submit',(event)=>{
 //  as long as the number of clicks is less than notification-type array length
 //******************************************************************************
 $notifyBell.on('click',function() {
-  if (clickCounts < notifyType.length) {
+  clickCounts += 1;
+  if (clickCounts <= notifyType.length) {
+    if (clickCounts === 1) {
+      Lobibox.notify(notifyType[0],
+                    { msg: notifyMessage[0],
+                      img: notifyIcons[0],
+                      position: "top right"
+                    });
+    }
     Lobibox.notify(notifyType[clickCounts],
                   { msg: notifyMessage[clickCounts],
                     img: notifyIcons[clickCounts],
                     position: "top right"
                   });
+  };
+  if (clickCounts === notifyType.length - 1) {
+    $('#alerts').addClass('hidden');
   }
-  clickCounts += 1;
+
 })
 
 //******************************************************************************
@@ -114,6 +125,7 @@ $chartSelector.on('click', 'li', function(event) {
 //******************************************************************************
 //  when SEND button is clicked
 //  set a message box (success or alert) according to data provided
+//  on success the values of fields are cleared
 //******************************************************************************
 $sendButton.on('click', function() {
   let $messageAdd = $('#userEmail').val();
@@ -124,6 +136,8 @@ $sendButton.on('click', function() {
   if ($messageAdd && $messageText)  {
     alertType = 'success';
     alertMessage = 'Message sent successfully';
+    $('#userEmail').val("");
+    $('#textMessage').val("");
   } else {
     alertType = 'error';
     alertMessage = "Missing data! Make sure that User's Email and Message Content are filled before sending";
@@ -152,9 +166,20 @@ $localProfileNotify.on('click', function(){
 })
 
 //******************************************************************************
+//  when time zone select option is changed
+//  sets the local storage variable accordingly
+//******************************************************************************
+$optionZone.on('change', function(){
+  if (checkLocalStorageError()) {
+    localStorage.setItem('timeSelect',$optionZone.val());
+  }
+})
+
+//******************************************************************************
 //                   Return Local Storage Values function
 //  check if local storage variable is not null,
-//  then set as checked for the corresponding check box
+//  then set as checked for the corresponding check boxes,
+//  also set the time zone option to the selected earlier
 //******************************************************************************
 function returnLocalstorageValues(){
   if (checkLocalStorageError()) {
@@ -163,6 +188,10 @@ function returnLocalstorageValues(){
     }
     if (localStorage.getItem('notify2') !== null) {
       $localProfileNotify.prop('checked',true);
+    }
+    if (localStorage.getItem('timeSelect') !== null) {
+      let optionValue = parseInt(localStorage.getItem('timeSelect'));
+      $optionZone.val(optionValue);
     }
   }
 }

@@ -46,7 +46,7 @@ h2  {
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 2fr;
   grid-template-rows: 40px;
   grid-template-areas: "header navigation"
                        "notify notify"
@@ -78,8 +78,15 @@ h1 {
   border-radius: 50%;
   padding: 3px 1px 2px;
   margin: 5px 10px;
-}
 
+}
+#alerts {
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: #77C37A;
+
+}
 #bell svg {
   width: 20px;
   margin: auto 5px;
@@ -92,6 +99,9 @@ h1 {
   background-color: #77C37A;
 }
 
+#bell:hover > #alerts{
+  opacity: 0;
+}
 
 @keyframes shake {
     30% {transform: rotate(30deg);}
@@ -327,7 +337,7 @@ li.general {
 }
 
 .card p {
-  font-size: .6em;
+  font-size: .75em;
 }
 
 p.mail {
@@ -339,7 +349,7 @@ p.mail {
 }
 
 .post p {
-  font-size: .45em;
+  font-size: .8em;
 }
 
 p.link {
@@ -542,7 +552,7 @@ p.link {
   #user h2 {
     margin: 0;
     font-size: .7em;
-    padding-left: 10px;
+    padding: 0 10px;
   }
 
   nav.container {
@@ -590,7 +600,7 @@ p.link {
 
   .card p,
   .post p  {
-    font-size: .8em;
+    font-size: 1em;
   }
 
   p.link {
@@ -686,7 +696,7 @@ p.link {
   }
 
   .post p  {
-    font-size: .7em;
+    font-size: .9em;
   }
 
   #messages input,
